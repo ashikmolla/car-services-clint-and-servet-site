@@ -1,52 +1,47 @@
 // import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo.svg'
+import { useContext } from 'react';
+import { AuthContext } from '../../../Provider/AuthProvider';
 
 const NavBar = () => {
 
-    // const { user, logOut } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+    // console.log(user)
     // console.log(user)
 
-    // const handleLogOut = () => {
-    //     logOut()
-    //         .then(() => {
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
 
-    //         })
-    //         .catch(error => console.log(error))
+            })
+            .catch(error => console.log(error))
 
-    // }
+    }
 
 
 
     // html code with dainamic
     const naveItems = <>
 
-        {/* <li className='items-center text-green-500'>
+        <li className=' text-green-500'>
             {
                 user &&
                 user.email
             }
-
-        </li> */}
-
+        </li>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/about'>About</Link></li>
 
         <li><Link to='/blog'>Blog</Link></li>
-
-        {/* <li><Link to='/login'>Login</Link></li> */}
-
-
-        {/* {
+        {
             user?.email ? <>
                 <li><Link to='/myBooking'>MyBooking</Link></li>
-                <li> <button onClick={handleLogOut}> Log Out</button> </li>
+                <li><Link to='/login'><button onClick={handleLogOut}> Log Out</button></Link></li>
             </>
                 : <li> <Link to='/login'>Login</Link>  </li>
-        } */}
+        }
 
-
-        <li><Link to='/'>Home</Link></li>
 
     </>
     return (
