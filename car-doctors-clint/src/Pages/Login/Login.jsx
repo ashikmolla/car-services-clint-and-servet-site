@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 
 const Login = () => {
-    const{signIn}=useContext(AuthContext)
+    const { signIn } = useContext(AuthContext)
 
     const hanleLogin = event => {
         event.preventDefault();
@@ -17,9 +17,7 @@ const Login = () => {
         signIn(email, password)
             .then(result => {
                 const loggedUser = result.user;
-
-                
-                console.log(loggedUser);
+                // console.log(loggedUser);
                 // navigate(from, { replace: true });
 
             })

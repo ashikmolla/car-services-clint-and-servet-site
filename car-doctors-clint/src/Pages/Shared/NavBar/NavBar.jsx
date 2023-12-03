@@ -67,12 +67,6 @@ const NavBar = () => {
             <div className="navbar-end">
                 <p>Ashik</p>
 
-
-                <div className="tooltip" data-tip={'Ashik'}>
-                    <button className="btn btn-circle btn-outline"> Pro
-                    </button>
-
-                </div>
                 <div className="tooltip" data-tip='Your Name'>
                     <button className='btn  btn-circle'>
                         P
