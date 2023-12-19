@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 
 const SignUp = () => {
-    const [error, setError]=useState(null)
-    const {createUser}= useContext(AuthContext)
+    const [error, setError] = useState(null)
+    const { createUser } = useContext(AuthContext)
 
     const hanleSignUp = event => {
         event.preventDefault();
@@ -17,17 +17,18 @@ const SignUp = () => {
         console.log(name, email, password, confirmPassword);
 
         createUser(email, password)
-        .then(result=>{
-            const user =result.user;
-            // console.log(user)
-            
-            // navigate(from,{replace: true})
-            
-        })
-        .catch(error=> {
-            console.log(error)
-            setError(error.message)
-        })
+            .then(result => {
+                const user = result.user;
+                // console.log(user)
+
+                // navigate(from,{replace: true})
+                event.target.reset();
+
+            })
+            .catch(error => {
+                console.log(error)
+                setError(error.message)
+            })
     }
     return (
         <div className="hero min-h-screen bg-base-200 mt-8">
@@ -66,7 +67,7 @@ const SignUp = () => {
 
                             </div>
                             <div className="form-control mt-6">
-                            <p className='text-orange-700 text-center text-sm mb-4'>{error}</p>
+                                <p className='text-orange-700 text-center text-sm mb-4'>{error}</p>
 
                                 <input className="btn btn-primary" type="submit" value="Sign Up" />
                             </div>
