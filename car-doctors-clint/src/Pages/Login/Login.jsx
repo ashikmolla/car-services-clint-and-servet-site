@@ -1,24 +1,30 @@
 
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../assets/images/login/login.svg'
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 const Login = () => {
     const { signIn } = useContext(AuthContext)
+    const [error, setError] = useState()
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || "/";
 
     const hanleLogin = event => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
+        // console.log(email, password);
 
         signIn(email, password)
             .then(result => {
-                const loggedUser = result.user;
-                // console.log(loggedUser);
-                // navigate(from, { replace: true });
+                const user = result.user;
+                
+                // console.log(user)
+                navigate(from, { replace: true });
 
             })
             .catch(error => {
@@ -62,10 +68,11 @@ const Login = () => {
                                 <p className='text-orange-700 text-center text-sm mb-4'></p>
 
                                 <input className="btn btn-primary" type="submit" value="Login" />
+                                <span>{error}</span>
                             </div>
                         </form>
                         <p className='text-center mt-4'>New to car Doctor <Link className='text-orange-500 font-bold' to="/signUp">  Sign Up</Link></p>
-                        {/* <SocilaLogin></SocilaLogin> */}
+                        <SocialLogin />
                     </div>
                 </div>
             </div>

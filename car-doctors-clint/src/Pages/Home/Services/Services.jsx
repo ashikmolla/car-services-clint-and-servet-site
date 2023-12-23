@@ -7,7 +7,7 @@ const Services = () => {
     const searchRef=useRef(null);
     const [search, setSearch]=useState('')
     useEffect(() => {
-        fetch(`http://localhost:2000/services?search=${search}&sort=${asc ? 'asc' : 'desc'}`)
+        fetch(`https://my-car-doctors-server.vercel.app/services?search=${search}&sort=${asc ? 'asc' : 'desc'}`)
             .then(res => res.json())
             .then(data => setServices(data))
   

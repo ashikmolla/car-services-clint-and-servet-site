@@ -3,16 +3,18 @@ import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo.svg'
 import { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
+import { UserIcon } from '@heroicons/react/24/solid'
 
 const NavBar = () => {
 
     const { user, logOut } = useContext(AuthContext);
-    // console.log(user)
+    // const displayName = user.displayName
     // console.log(user)
 
     const handleLogOut = () => {
         logOut()
             .then(() => {
+
 
             })
             .catch(error => console.log(error))
@@ -25,12 +27,12 @@ const NavBar = () => {
     const naveItems = <>
 
         <li className=' text-green-500 mt-2'>
-          
-           {
+
+            {
                 user &&
                 user.email
             }
-           
+
         </li>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/about'>About</Link></li>
@@ -46,6 +48,8 @@ const NavBar = () => {
 
 
     </>
+    // const profile =
+
     return (
         <div className="navbar bg-base-100 h-20 mt-5 mb-4">
             <Link to="/" className="mt-3"><img src={logo} alt="" /></Link>
@@ -70,16 +74,25 @@ const NavBar = () => {
 
 
             <div className="navbar-end gap-3">
+                <>
+                    {
+                        user?.displayName ? <>
+                            <div className="tooltip" data-tip={user.displayName}>
+                                <button className='btn  btn-circle'>
+                                    <UserIcon className="h-6 w-6 text-balck" />
 
-                <p>Ashik</p>
+                                </button>
+                            </div>
+                        </>
+                            : <div className="tooltip" data-tip={"don't give me Your name "}>
+                                <button className='btn  btn-circle'>
+                                    <UserIcon className="h-6 w-6 text-balck" />
 
-                <div className="tooltip" data-tip='Your Name'>
-                    <button className='btn  btn-circle'>
-                        P
-                    </button>
-                </div>
 
-
+                                </button>
+                            </div>
+                    }
+                </>
             </div>
 
 
